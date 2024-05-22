@@ -12,11 +12,17 @@ To build the Docker image, run the following command:
 docker build -t gitbook .
 ```
 
+### Initializing a GitBook Project
+To initialize a new GitBook project, navigate to the directory where you want to create your GitBook project and run:
+```sh
+docker run --rm -v "$PWD/hello-gitbook:/gitbook" -p 4000:4000 gitbook gitbook init
+```
+
 ### Running GitBook
 To serve your GitBook project, navigate to the directory containing your GitBook project and run:
 
 ```sh
-docker run --rm -v "$PWD:/gitbook" -p 4000:4000 gitbook gitbook serve
+docker run --rm -v "$PWD/hello-gitbook:/gitbook" -p 4000:4000 gitbook gitbook serve
 ```
 
 ### Handling Plugin Errors
@@ -30,11 +36,11 @@ Error: Couldn't locate plugins ".....". Run 'gitbook install' to install plugins
 You can install the necessary plugins by running:
 
 ```sh
-docker run --rm -v "$PWD:/gitbook" -p 4000:4000 gitbook gitbook install
+docker run --rm -v "$PWD/{path-to-your-project}:/gitbook" -p 4000:4000 gitbook gitbook install
 ```
 
 After installing the plugins, you can serve your GitBook again:
 
 ```sh
-docker run --rm -v "$PWD:/gitbook" -p 4000:4000 gitbook gitbook serve
+docker run --rm -v "$PWD/{path-to-your-project}:/gitbook" -p 4000:4000 gitbook gitbook serve
 ```
